@@ -1,0 +1,89 @@
+@import "./variables.scss";
+@import "./breakpoints.scss";
+
+.categories {
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: $lightgrey;
+  background-image: url('https://img.freepik.com/free-vector/winter-blue-pink-gradient-background-vector_53876-117275.jpg?uid=R141702615&ga=GA1.1.132172907.1715103501&semt=ais_user');
+  background-size: cover;
+  background-position: center;
+
+  @include sm {
+    padding: 50px 20px;
+  }
+
+  h1 {
+    color: $blue;
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
+
+  p {
+    max-width: 700px;
+    font-size: 20px;
+  }
+
+  .categories_list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 0;
+    justify-content: center;
+    gap: 20px;
+
+    a {
+      text-decoration: none;
+    }
+
+    .category {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 250px;
+      height: 200px;
+      cursor: pointer;
+      border-radius: 15px; // Added border-radius
+
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px; // Added border-radius to image
+      }
+
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.55);
+        border-radius: 15px; // Added border-radius to overlay
+        transition: 0.3s ease-in-out;
+      }
+
+      &_text {
+        position: relative;
+        color: white;
+
+        &_icon {
+          font-size: 45px;
+        }
+
+        p {
+          font-weight: 600;
+        }
+      }
+
+      &:hover {
+        .overlay {
+          width: 80%;
+          height: 80%;
+        }
+      }
+    }
+  }
+}
