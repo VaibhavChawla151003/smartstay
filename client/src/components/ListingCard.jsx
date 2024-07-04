@@ -13,7 +13,7 @@ import axios from 'axios'
 const ListingCard = ({
   listingId,
   creator,
-  listingPhotoPaths,
+  listingPhotoUrls,
   city,
   province,
   country,
@@ -31,11 +31,11 @@ const ListingCard = ({
    const navigate = useNavigate()
    const dispatch = useDispatch()
   const goToPrevSlide = () =>{
-    setCurrentIndex((prevIndex) => (prevIndex -1 + listingPhotoPaths.length) % listingPhotoPaths.length)
+    setCurrentIndex((prevIndex) => (prevIndex -1 + listingPhotoUrls.length) % listingPhotoUrls.length)
   }
 
   const goToNextSlide = () =>{
-    setCurrentIndex((prevIndex) => (prevIndex +1) % listingPhotoPaths.length)
+    setCurrentIndex((prevIndex) => (prevIndex +1) % listingPhotoUrls.length)
   }
 
   const user = useSelector((state) => state.user)
@@ -67,10 +67,10 @@ const ListingCard = ({
           className="slider"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {listingPhotoPaths?.map((photo, index) => (
+          {listingPhotoUrls?.map((photo, index) => (
             <div key={index} className="slide">
               <img
-                src={`http://localhost:8000/${photo?.replace("public", "")}`}
+                src={photo}
                 alt={`photo ${index + 1}`}
               />
               <div

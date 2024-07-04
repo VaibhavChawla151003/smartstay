@@ -164,10 +164,7 @@ const SideList = ({ open, setOpen }) => {
         <Box sx={{ mx: 'auto', mt: 3, mb: 1 }}>
           <Tooltip title={currentUser?.name || ''}>
             <Avatar
-               src={`http://localhost:8000/${currentUser.profileImagePath.replace(
-              "public",
-              ""
-            )}`}
+               src={currentUser.profileImagePath}
               {...(open && { sx: { width: 100, height: 100 } })}
             />
           </Tooltip>

@@ -42,7 +42,7 @@ useEffect(()=>{
         headerName: 'Photo',
         width: 80,
         renderCell: (params) => (
-          <Avatar  style={{ marginTop: 7 }} src={`http://localhost:8000/${params.row.listingPhotoPaths[0]?.replace("public", "")}`} variant="rounded" />
+          <Avatar  style={{ marginTop: 7 }} src={params.row.listingPhotoUrls[0]} variant="rounded" />
         ),
         sortable: false,
         filterable: false,
@@ -62,10 +62,7 @@ useEffect(()=>{
         width: 100,
         renderCell: (params) => (
           <Tooltip title={params.row.creator.firstName}>
-            <Avatar   style={{ marginTop: 7 }} src={`http://localhost:8000/${params.row.creator.profileImagePath.replace(
-                            "public",
-                            ""
-                        )}`} />
+            <Avatar   style={{ marginTop: 7 }} src={params.row.creator.profileImagePath}/>
           </Tooltip>
         ),
       },

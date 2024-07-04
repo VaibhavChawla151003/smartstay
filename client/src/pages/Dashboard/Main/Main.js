@@ -34,7 +34,6 @@ const Main = ({ setSelectedLink, link }) => {
     }
 
     const users = useSelector((state) => state.users)
-    
     const getAllUsers = async () => {
         try {
             
@@ -101,10 +100,7 @@ const Main = ({ setSelectedLink, link }) => {
               <Box key={user._id}>
                 <ListItem>
                   <ListItemAvatar>
-                    <Avatar alt={user?.name} src={`http://localhost:8000/${user.profileImagePath.replace(
-              "public",
-              ""
-            )}`} />
+                    <Avatar alt={user?.name} src={user.profileImagePath} />
                   </ListItemAvatar>
                   <ListItemText
                     primary={user?.firstName}

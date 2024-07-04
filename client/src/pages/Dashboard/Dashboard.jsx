@@ -7,11 +7,14 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
+import axios from 'axios'
 import MuiAppBar from '@mui/material/AppBar';
 import { Brightness4, Brightness7, Home, Menu } from '@mui/icons-material';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SideList from './SideList';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUsers } from '../../redux/state';
 
 const drawerWidth = 240;
 
@@ -34,7 +37,25 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export default function Dashboard() {
+  const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
+  const users = useSelector((state) => state.users)
+    console.log(users.length);
+    const getAllUsers = async () => {
+        try {
+            
+            const response = await axios.get("http://localhost:8000/api/v1/users")
+            const data = response.data
+            dispatch(setUsers(data))
+
+        } catch (error) {
+            console.log("Fetch Users failed", error.message);
+        }
+    }
+
+    useEffect(()=>{
+      getAllUsers();
+    },[])
   const [dark, setDark] = useState(true);
 
   const darkTheme = useMemo(

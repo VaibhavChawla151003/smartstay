@@ -4,17 +4,31 @@ import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import moment from 'moment';
 import { grey } from '@mui/material/colors';
 import UsersActions from './UsersActions';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUsers } from '../../../redux/state';
+import axios from 'axios'
 
 const Users = ({ setSelectedLink, link }) => {
   const users = useSelector((state) => state.users.result);
+  const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.user)
+  const getAllUsers = async () => {
+    try {
+        
+        const response = await axios.get("http://localhost:8000/api/v1/users")
+        const data = response.data
+        dispatch(setUsers(data))
 
+    } catch (error) {
+        console.log("Fetch Users failed", error.message);
+    }
+}
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
   
   useEffect(() => {
     setSelectedLink(link);
+    getAllUsers()
   }, [link, setSelectedLink]);
 
   const columns = useMemo(
@@ -26,10 +40,7 @@ const Users = ({ setSelectedLink, link }) => {
         renderCell: (params) => (
           <Avatar
             style={{ marginTop: 7 }}
-            src={`http://localhost:8000/${params.row.profileImagePath.replace(
-              'public',
-              ''
-            )}`}
+            src={params.row.profileImagePath}
           />
         ),
         sortable: false,
@@ -43,14 +54,14 @@ const Users = ({ setSelectedLink, link }) => {
         width: 100,
         type: 'singleSelect',
         valueOptions: ['basic', 'editor', 'admin'],
-        editable: currentUser?.role==='admin',
+        editable: true,
       },
       {
         field: 'active',
         headerName: 'Active',
         width: 100,
         type: 'boolean',
-        editable: currentUser?.role==='admin',
+        editable: true,
       },
       {
         field: 'createdAt',

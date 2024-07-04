@@ -5,12 +5,13 @@ import { upload } from "../middlewares/multer.middleware.js"
 import jwt from "jsonwebtoken"
 import bcrypt from 'bcryptjs'
 import { Booking } from "../models/booking.model.js"
+import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 const registerUser = async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body
 
-        const profileImage = req.file
+        const profileImage = req?.file
 
         if (!profileImage) {
             return res.status(400).send("No file uploaded!!")
@@ -18,17 +19,20 @@ const registerUser = async (req, res) => {
 
         // path to the uploaded profile photo 
 
-        const profileImagePath = profileImage.path
+        const profileImagePath = profileImage?.path
+        
+        const profile = await uploadOnCloudinary(profileImagePath)
 
         const existingUser = await User.findOne({ email })
 
         if (existingUser) {
             return res.status(409).json({ message: "User already exists!!" })
         }
-
+  
         // hash the password
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
+        
 
         /* Create a new User */
         const newUser = new User({
@@ -36,7 +40,7 @@ const registerUser = async (req, res) => {
             lastName,
             email,
             password: hashedPassword,
-            profileImagePath,
+            profileImagePath:profile.url,
         });
 
         /* Save the new User */

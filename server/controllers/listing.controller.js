@@ -1,6 +1,7 @@
 import { Booking } from "../models/booking.model.js";
 import { Listing } from "../models/listing.model.js";
 import { User } from "../models/user.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // to create listing
 const createListing = async (req, res) => {
@@ -14,6 +15,16 @@ const createListing = async (req, res) => {
         }
 
         const listingPhotoPaths = listingPhotos.map((file) => file.path)
+        
+        const listingPhotoUrls = [];
+        for (const localFilePath of listingPhotoPaths) {
+            const response = await uploadOnCloudinary(localFilePath);
+            if (response && response.url) {
+                listingPhotoUrls.push(response.url);
+            } else {
+                return res.status(500).send("Failed to upload image to Cloudinary");
+            }
+        }
 
         const newListing = new Listing({
             creator,
@@ -29,7 +40,7 @@ const createListing = async (req, res) => {
             bathroomCount,
             bedCount,
             amenities,
-            listingPhotoPaths,
+            listingPhotoUrls,
             title,
             description,
             highlight,

@@ -11,7 +11,6 @@ const UsersActions = ({ params, rowId, setRowId }) => {
   const currentUser = useSelector((state) => state.user)
   const users = useSelector((state) => state.users.result);
   
-
   const handleSubmit = async () => {
     setLoading(true);
     const { role, active, _id } = params.row;
@@ -20,8 +19,11 @@ const UsersActions = ({ params, rowId, setRowId }) => {
     if (response) {
       setRowId(null);
       const user = users.find(user=> user._id === _id)
-      user.role = role
-      user.active = active
+      
+        user.role = role
+        user.active = active
+      
+      
     }
     setLoading(false);
   };

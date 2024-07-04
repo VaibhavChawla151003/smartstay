@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-
 const listingSchema = new Schema({
     creator: {
         type: mongoose.Schema.Types.ObjectId,
@@ -54,7 +53,7 @@ const listingSchema = new Schema({
         type: Array,
         default: []
     },
-    listingPhotoPaths: [{ type: String }], // Store photo URLs
+    listingPhotoUrls: [{ type: String }], // Store photo URLs
     title: {
         type: String,
         required: true

@@ -51,7 +51,7 @@ const Listings = () => {
                         ({
                             _id,
                             creator,
-                            listingPhotoPaths,
+                            listingPhotoUrls,
                             city,
                             province,
                             country,
@@ -63,7 +63,7 @@ const Listings = () => {
                             <ListingCard
                                 listingId={_id}
                                 creator={creator}
-                                listingPhotoPaths={listingPhotoPaths} 
+                                listingPhotoUrls={listingPhotoUrls} 
                                 city={city}
                                 province={province}
                                 country={country}
