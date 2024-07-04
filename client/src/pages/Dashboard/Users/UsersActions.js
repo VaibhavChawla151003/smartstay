@@ -22,8 +22,6 @@ const UsersActions = ({ params, rowId, setRowId }) => {
       
         user.role = role
         user.active = active
-      
-      
     }
     setLoading(false);
   };
