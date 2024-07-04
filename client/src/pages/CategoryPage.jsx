@@ -20,7 +20,7 @@ const CategoryPage = () => {
 
     const getFeedlistings = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/listings?category=${category}`)
+            const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/listings?category=${category}`)
             const data = response.data
             dispatch(setListings({ listings: data }))
             setLoading(false)

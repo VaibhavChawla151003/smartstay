@@ -24,7 +24,7 @@ const ListingDetails = () => {
 
     const getListingDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/listings/${listingId}`)
+            const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/listings/${listingId}`)
             setListing(response.data)
 
             setLoading(false)
@@ -77,7 +77,7 @@ const ListingDetails = () => {
                 totalPrice: listing.price * dayCount,
             }
 
-            const response = await axios.post("http://localhost:8000/api/v1/bookings/create", bookingForm);
+            const response = await axios.post("https://smartstay-2.onrender.com/api/v1/bookings/create", bookingForm);
 
             console.log(response.status);
             if (response.status === 200) {

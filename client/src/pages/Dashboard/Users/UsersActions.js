@@ -14,7 +14,7 @@ const UsersActions = ({ params, rowId, setRowId }) => {
   const handleSubmit = async () => {
     setLoading(true);
     const { role, active, _id } = params.row;
-    const response = await axios.patch(`http://localhost:8000/api/v1/users/updateStatus/${_id}`, { role, active });
+    const response = await axios.patch(`https://smartstay-2.onrender.com/api/v1/users/updateStatus/${_id}`, { role, active });
 
     if (response) {
       setRowId(null);

@@ -25,7 +25,7 @@ const Main = ({ setSelectedLink, link }) => {
 
     const getFeedlistings = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/api/v1/listings")
+            const response = await axios.get("https://smartstay-2.onrender.com/api/v1/listings")
             const data = response.data
             dispatch(setListings({ listings : data }))
         } catch (error) {
@@ -37,7 +37,7 @@ const Main = ({ setSelectedLink, link }) => {
     const getAllUsers = async () => {
         try {
             
-            const response = await axios.get("http://localhost:8000/api/v1/users")
+            const response = await axios.get("https://smartstay-2.onrender.com/api/v1/users")
             const data = response.data
             dispatch(setUsers(data))
 

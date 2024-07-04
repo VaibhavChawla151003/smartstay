@@ -20,8 +20,10 @@ connectDB()
         console.log(`Server is running at port ${process.env.PORT}`);
     })
 
-
 })
 .catch((err) =>{
     console.log("Mongodb connection failed",err)
 })
+
+
+// https://smartstay-2.onrender.com

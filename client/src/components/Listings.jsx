@@ -15,7 +15,7 @@ const Listings = () => {
 
     const getFeedlistings = async () => {
         try {
-            const response = await axios.get(selectedCategory !== "All" ? `http://localhost:8000/api/v1/listings?category=${selectedCategory}` : "http://localhost:8000/api/v1/listings")
+            const response = await axios.get(selectedCategory !== "All" ? `https://smartstay-2.onrender.com/api/v1/listings?category=${selectedCategory}` : "https://smartstay-2.onrender.com/api/v1/listings")
             const data = response.data
             dispatch(setListings({ listings: data }))
             setLoading(false)

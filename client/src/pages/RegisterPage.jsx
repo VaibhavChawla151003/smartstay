@@ -40,7 +40,7 @@ const RegisterPage = () => {
             register_form.append(key,formData[key])
          }
 
-         const response = await axios.post("http://localhost:8000/api/v1/users/register",register_form)
+         const response = await axios.post("https://smartstay-2.onrender.com/api/v1/users/register",register_form)
 
          if(response.status === 200){
             navigate('/login')

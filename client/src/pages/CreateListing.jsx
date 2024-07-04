@@ -137,7 +137,7 @@ const CreatingListing = () => {
 
       //send a post request to server
 
-      const response = await axios.post("http://localhost:8000/api/v1/listings/create",listingForm)
+      const response = await axios.post("https://smartstay-2.onrender.com/api/v1/listings/create",listingForm)
 
       if(response.status ===  200){
         navigate('/')

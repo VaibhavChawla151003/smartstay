@@ -16,7 +16,7 @@ const HomePage = () => {
     const getAllUsers = async () => {
         try {
             
-            const response = await axios.get("http://localhost:8000/api/v1/users")
+            const response = await axios.get("https://smartstay-2.onrender.com/api/v1/users")
             const data = response.data
             dispatch(setUsers(data))
 

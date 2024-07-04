@@ -47,7 +47,7 @@ const ListingCard = ({
     console.log(user._id);
     console.log(creator._id);
     if(user?._id !== creator._id){
-      const response = await axios.patch(`http://localhost:8000/api/v1/users/${user?._id}/${listingId}`)
+      const response = await axios.patch(`https://smartstay-2.onrender.com/api/v1/users/${user?._id}/${listingId}`)
       const data = response.data.wishList
       dispatch(setWishList(data));
     }else{

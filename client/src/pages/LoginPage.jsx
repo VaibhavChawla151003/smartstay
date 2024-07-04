@@ -17,7 +17,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/api/v1/users/login", { email, password });
+      const response = await axios.post("https://smartstay-2.onrender.com/api/v1/users/login", { email, password });
       
       if (response.status === 200) {
         

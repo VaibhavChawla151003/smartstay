@@ -19,7 +19,7 @@ const [loading, setLoading] = useState(false);
 const handleDelete = async () => {
   setLoading(true);
   
-  const response = await axios.delete(`http://localhost:8000/api/v1/listings/delete/${params.row._id}`);
+  const response = await axios.delete(`https://smartstay-2.onrender.com/api/v1/listings/delete/${params.row._id}`);
 
   if (response.status === 200) {
     console.log("Listing deleted!!");

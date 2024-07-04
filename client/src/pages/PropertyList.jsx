@@ -19,7 +19,7 @@ const PropertyList = () => {
 
     const getPropertyList = async( ) =>{
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/users/${user._id}/properties`);
+            const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/users/${user._id}/properties`);
             const data = response.data
 
             dispatch(setPropertyList(data))

@@ -21,7 +21,7 @@ const SearchPage = () => {
   
     const getSearchListings = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/v1/listings/search/${search}`)
+        const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/listings/search/${search}`)
   
         const data = response.data
         dispatch(setListings({ listings: data }))

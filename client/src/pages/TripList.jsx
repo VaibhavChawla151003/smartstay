@@ -19,7 +19,7 @@ const TripList = () => {
 
     const getTripList = async() => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/users/${userId}/trips`)
+            const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/users/${userId}/trips`)
             const data = response.data
 
             dispatch(setTripList(data))
