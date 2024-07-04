@@ -16,7 +16,6 @@ const registerUser = async (req, res) => {
             return res.status(400).send("No file uploaded!!")
         }
 
-        console.log(profileImage);
         // path to the uploaded profile photo 
 
         const profileImagePath = profileImage.path
@@ -99,7 +98,10 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.status(409).json({ message: "User does not exists!" })
         }
-
+        
+        if(!user.active){
+            res.status(400).json({message:"This acccount is not active, Try to contact the admin"});
+        }
         const isPasswordValid = await user.isPasswordCorrect(password)
 
         if (!isPasswordValid) {
@@ -148,18 +150,18 @@ const addToWishList = async (req, res) => {
         const user = await User.findById(userId)
 
         const listing = await Listing.findById(listingId).populate("creator")
-
+   
         const favoriteListing = user.wishList.find((item) => item._id.toString() === listingId)
 
-        if (favoriteListing) {
-            user.wishList = user.wishList.filter((item) => item._id.toString() !== listingId)
-            await user.save()
-            res.status(200).json({ message: "Listing is removed from the wish list", wishList: user.wishList })
-        } else {
-            user.wishList.push(listing)
-            await user.save()
-            res.status(200).json({ message: "Listing is added to the wish list", wishList: user.wishList })
-        }
+            if (favoriteListing) {
+                user.wishList = user.wishList.filter((item) => item._id.toString() !== listingId)
+                await user.save()
+                res.status(200).json({ message: "Listing is removed from the wish list", wishList: user.wishList })
+            } else {
+                user.wishList.push(listing)
+                await user.save()
+                res.status(200).json({ message: "Listing is added to the wish list", wishList: user.wishList })
+            }
     } catch (error) {
         console.log(error);
         res.status(404).json({ error: error.message })
@@ -188,6 +190,21 @@ const getReservationList = async (req, res) => {
     }
 }
 
+const getUsers = async(req,res) =>{
+    const users = await User.find().sort({_id: -1});
+    res.status(200).json({success:true, result:users})
+}
+
+const updateStatus = async(req,res) =>{
+    try {
+        const {role,active} = req.body
+        const {userId} = req.params
+        await User.findByIdAndUpdate(userId ,{role,active})
+        res.status(200).json({success:true , result:{_id:userId}})
+    } catch (error) {
+        console.log("Failed in updating the status",error);
+    }
+}
 
 
 // const logoutUser = asyncHandler(async (req, res) => {
@@ -303,4 +320,4 @@ const getReservationList = async (req, res) => {
 
 
 
-export { registerUser, loginUser, getTripList, addToWishList, getPropertyList , getReservationList}
+export { registerUser, loginUser, getTripList, addToWishList, getPropertyList , getReservationList , getUsers , updateStatus}

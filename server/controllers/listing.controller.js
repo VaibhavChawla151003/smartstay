@@ -1,4 +1,6 @@
+import { Booking } from "../models/booking.model.js";
 import { Listing } from "../models/listing.model.js";
+import { User } from "../models/user.model.js";
 
 // to create listing
 const createListing = async (req, res) => {
@@ -103,5 +105,26 @@ const getListingDetails = async (req, res) => {
     }
 }
 
+const deleteListing = async (req, res) => {
+    try {
+        const { listingId } = req.params;
+        const booking = await Booking.findOne({listingId : listingId})
+        
+        if(booking){
+            const deleteBook = await Booking.findOneAndDelete({listingId : listingId})
+        }
 
-export { createListing , getListings , getListingDetails , getListingsBySearch}
+        const listing = await Listing.findByIdAndDelete(listingId);
+        if (!listing) {
+            return res.status(404).json({ message: "Listing not found" });
+        }
+
+         
+        res.status(200).json({ message: "Listing deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Listing cannot be deleted", error: error.message });
+        console.log(error);
+    }
+};
+
+export { createListing , getListings , getListingDetails , getListingsBySearch , deleteListing}

@@ -1,7 +1,7 @@
 import { Router } from "express"
-import { registerUser ,loginUser, getTripList, addToWishList, getPropertyList, getReservationList } from "../controllers/user.controller.js"
+import { registerUser ,loginUser, getTripList, addToWishList, getPropertyList, getReservationList, getUsers, updateStatus } from "../controllers/user.controller.js"
 import { upload } from "../middlewares/multer.middleware.js"
-import { verifyJwt } from "../middlewares/auth.middleware.js"
+
 const router = Router()
 
 router.route("/register").post(
@@ -11,8 +11,9 @@ router.route("/register").post(
 
 
 router.route("/login").post(loginUser)
+router.route("/").get(getUsers)
+router.route("/updateStatus/:userId").patch(updateStatus)
 router.route("/:userId/trips").get(getTripList)
-router.route("/:userId/:listingId").patch(addToWishList)
 router.route("/:userId/:listingId").patch(addToWishList)
 router.route("/:userId/properties").get(getPropertyList)
 router.route("/:userId/reservations").get(getReservationList)

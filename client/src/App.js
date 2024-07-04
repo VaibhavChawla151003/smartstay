@@ -11,6 +11,7 @@ import PropertyList from './pages/PropertyList';
 import ReservationList from './pages/ReservationList';
 import CategoryPage from './pages/CategoryPage';
 import SearchPage from './pages/SearchPage';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage/>} />
+          <Route path='/dashboard/*' element={<Dashboard/>} />
           <Route path='/register' element={<RegisterPage/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/create-listing' element={<CreateListing/>} />

@@ -4,6 +4,7 @@ const initialState = {
     user:null,
     accessToken:null,
     refreshToken:null,
+    users:[]
 }
 
 export const userSlice = createSlice({
@@ -34,11 +35,14 @@ export const userSlice = createSlice({
         },
         setReservationList: (state,action) =>{
             state.user.reservationList = action.payload
+        },
+        setUsers: (state,action)=>{
+            state.users = action.payload
         }
     } 
 })
 
-export const {setLogout,setLogin,setListings,setTripList,setWishList,setPropertyList,setReservationList} = userSlice.actions
+export const {setLogout,setUsers,setLogin,setListings,setTripList,setWishList,setPropertyList,setReservationList} = userSlice.actions
 export default userSlice.reducer
 
 

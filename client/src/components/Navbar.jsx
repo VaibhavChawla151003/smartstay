@@ -76,6 +76,8 @@ const Navbar = () => {
 
       {dropdownMenu && user && (
         <div className="navbar_right_accountmenu">
+          <Link to={'/'}>Home</Link>
+          <Link to={'/dashboard'}>Dashboard</Link>
           <Link to={`/${user._id}/trips`}>Trip List</Link>
           <Link to={`/${user._id}/wishList`}>Wish List</Link>
           <Link to={`/${user._id}/properties`}>Property List</Link>
