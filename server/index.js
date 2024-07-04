@@ -11,10 +11,16 @@ connectDB()
         console.log("ERROR :",error)
         throw error
     })
+
+    app.get('/',()=>{
+        console.log("Server is ok");
+    })
     
     app.listen(process.env.PORT || 8000 ,()=>{
         console.log(`Server is running at port ${process.env.PORT}`);
     })
+
+
 })
 .catch((err) =>{
     console.log("Mongodb connection failed",err)
