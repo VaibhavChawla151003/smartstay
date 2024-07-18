@@ -18,10 +18,11 @@ const ListingDetails = () => {
     const navigate = useNavigate()
     const user = useSelector((state) => state.user)
 
+
     const { listingId } = useParams()
-
+    
     const [listing, setListing] = useState(null)
-
+    
     const getListingDetails = async () => {
         try {
             const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/listings/${listingId}`)
@@ -33,8 +34,7 @@ const ListingDetails = () => {
         }
     }
 
-    console.log(listing);
-
+   console.log(listing)
     useEffect(() => {
         getListingDetails()
     }, [])
@@ -62,7 +62,7 @@ const ListingDetails = () => {
     /* Submit booking */
 
     const customerId = useSelector((state) => state?.user?._id)
-
+     
     const handleSubmit = async () => {
         if (!user) {
             navigate('/login')
@@ -152,8 +152,7 @@ const ListingDetails = () => {
                             ))}
                         </div>
                     </div>
-
-                    <div>
+                    {listing.creator._id !== user._id && (<div>
                         <h2>How long do you want to stay?</h2>
                         <div className="date-range-calendar">
                             <DateRange ranges={dateRange} onChange={handleSelect} />
@@ -181,7 +180,8 @@ const ListingDetails = () => {
                             )}
                            
                         </div>
-                    </div>
+                    </div>)}
+                    
                 </div>
             </div>
             <Footer />

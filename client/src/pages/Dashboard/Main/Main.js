@@ -121,13 +121,13 @@ const Main = ({ setSelectedLink, link }) => {
             {listings.slice(0, 4).map((room, i) => (
               <Box key={room._id}>
                 <ListItem>
-                  {/* <ListItemAvatar>
+                  <ListItemAvatar>
                     <Avatar
                       alt={room?.title}
-                      src={room?.images[0]}
+                      src={room?.listingPhotoUrls[0]}
                       variant="rounded"
                     />
-                  </ListItemAvatar> */}
+                  </ListItemAvatar>
                   <ListItemText
                     primary={room?.title}
                     secondary={`Added: ${moment(room?.createdAt).fromNow()}`}
