@@ -22,8 +22,7 @@ const LoginPage = () => {
       if (response.status === 200) {
         
         const { accessToken, refreshToken, loggedInUser } = response.data;
-        console.log(accessToken);
-        console.log(refreshToken);
+
         dispatch(
           setLogin({
             user: loggedInUser,

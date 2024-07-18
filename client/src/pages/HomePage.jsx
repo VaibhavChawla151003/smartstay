@@ -12,7 +12,6 @@ const HomePage = () => {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
   const users = useSelector((state) => state.users)
-    console.log(users.length);
     const getAllUsers = async () => {
         try {
             

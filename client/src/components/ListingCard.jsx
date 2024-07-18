@@ -44,8 +44,7 @@ const ListingCard = ({
   const isLiked = wishList.find((item) => item?._id === listingId)
 
   const patchWishList = async ()=>{
-    console.log(user._id);
-    console.log(creator._id);
+
     if(user?._id !== creator._id){
       const response = await axios.patch(`https://smartstay-2.onrender.com/api/v1/users/${user?._id}/${listingId}`)
       const data = response.data.wishList

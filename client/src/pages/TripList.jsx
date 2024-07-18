@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 
 
 const TripList = () => {
-
+    
     const [loading,setLoading] = useState(true)
     const dispatch = useDispatch()
     const userId = useSelector((state) => state.user._id)
@@ -21,7 +21,7 @@ const TripList = () => {
         try {
             const response = await axios.get(`https://smartstay-2.onrender.com/api/v1/users/${userId}/trips`)
             const data = response.data
-
+            
             dispatch(setTripList(data))
 
             setLoading(false)
