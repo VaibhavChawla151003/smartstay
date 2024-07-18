@@ -9,7 +9,6 @@ import axios from 'axios'
 import { setTripList } from '../redux/state';
 import Footer from "../components/Footer";
 
-
 const TripList = () => {
     
     const [loading,setLoading] = useState(true)
@@ -43,8 +42,10 @@ const TripList = () => {
           <Navbar />
           <h1 className="title-list">Your Trip List</h1>
           <div className="list"> 
-            {tripList.length ? tripList?.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => (
+            {tripList.length ? tripList.map(({ listingId, hostId, startDate, endDate, totalPrice, booking=true }) => 
+              listingId ? (
               <ListingCard
+                key={listingId._id}
                 listingId={listingId._id}
                 creator={hostId._id}
                 listingPhotoUrls={listingId.listingPhotoUrls}
@@ -57,7 +58,7 @@ const TripList = () => {
                 totalPrice={totalPrice}
                 booking={booking}
               />
-            )) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt=''/>}
+            ) : null) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt=''/>}
           </div>
           <Footer/>
         </>
