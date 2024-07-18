@@ -53,7 +53,7 @@ const ReservationList = () => {
                             totalPrice={totalPrice}
                             booking={booking}
                         />
-                    ) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt='' />
+                    ) : null
                 ) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt='' />}
             </div>
             <Footer />
