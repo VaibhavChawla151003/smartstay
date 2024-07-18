@@ -15,7 +15,7 @@ const TripList = () => {
     const [loading,setLoading] = useState(true)
     const dispatch = useDispatch()
     const userId = useSelector((state) => state.user._id)
-    const tripList = useSelector((state) => state.user.tripList)
+    const tripList = useSelector((state) => state.user?.tripList || []);
 
     const getTripList = async() => {
         try {
@@ -23,7 +23,7 @@ const TripList = () => {
             const data = response.data
             
             dispatch(setTripList(data))
-
+            console.log(tripList);
             setLoading(false)
     
         } catch (error) {
@@ -34,7 +34,7 @@ const TripList = () => {
     
     useEffect(()=>{
        getTripList()
-    },[])
+    },[userId])
 
     return loading ? (
         <Loader />
