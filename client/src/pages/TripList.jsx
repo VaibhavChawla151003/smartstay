@@ -58,7 +58,7 @@ const TripList = () => {
                 totalPrice={totalPrice}
                 booking={booking}
               />
-            ) : null) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt=''/>}
+            ) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt=''/>) : <img src="https://cdn.dribbble.com/users/745861/screenshots/7889509/nothing_here_yet_4x.png" alt=''/>}
           </div>
           <Footer/>
         </>
