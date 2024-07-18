@@ -3,7 +3,6 @@ import {User} from "../models/user.model.js"
 
 export const verifyJwt = async (req,_,next) =>{ 
    try {
-    console.log("Hi")
     const token = req.cookies?.accessToken ||  req.header("Authorization")?.replace("Bearer ", "");
     
     if(!token){
